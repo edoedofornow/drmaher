@@ -1,0 +1,555 @@
+/* Reset some basic styling */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* General styles */
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+/* Header styles */
+header {
+    background-color: #004080;
+    color: #fff;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+header img {
+    height: 75px;
+}
+
+.header-buttons button {
+    background-color: transparent;
+    color: #fff;
+    border: 2px solid #fff;
+    padding: 10px 20px;
+    margin-left: 10px;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.header-buttons button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: scale(1.05);
+}
+
+/* Overlay background for pop-ups */
+.overlay {
+    display: none; /* Hide the overlay by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    z-index: 999; /* Place the overlay below the pop-up */
+}
+
+/* Popup general styles */
+.popup {
+    display: none; /* Hide the popup by default */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: transparent; /* Transparent background */
+    padding: 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    z-index: 1000; /* Ensure the popup is above the overlay */
+}
+
+.popup-content {
+    background-color: white; 
+    padding: 20px;
+    border-top-left-radius: 25px; 
+    border-bottom-left-radius: 25px; 
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+    position: relative;
+    max-height: 80vh; 
+    overflow-y: auto; 
+}
+
+.popup-content h2 {
+    margin-top: 0;
+    color: #004080;
+}
+
+.popup-content label {
+    display: block;
+    margin-top: 15px;
+    font-weight: 600;
+}
+
+.popup-content input[type="text"],
+.popup-content select,
+.popup-content input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+.popup-content button[type="submit"] {
+    background-color: transparent;
+    color: #004080;
+    padding: 12px;
+    border: 2px solid #004080;
+    border-radius: 25px;
+    cursor: pointer;
+    margin-top: 20px;
+    width: 100%;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.popup-content button[type="submit"]:hover {
+    background-color: #004080;
+    color: #fff;
+    transform: scale(1.05);
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.close:hover {
+    color: #000;
+}
+
+/* History results */
+#history-result {
+    margin-top: 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* Scrollbar styling for pop-ups */
+.popup-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 25px; /* Border radius for the content */
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+    position: relative;
+    max-height: 80vh; /* Limit height to prevent excessive overflow */
+    overflow-y: auto; /* Enable vertical scrolling if content overflows */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    scroll-behavior: smooth; /* Smooth scrolling */
+}
+
+/* WebKit browsers (Chrome, Safari, Edge) scrollbar styling */
+.popup-content::-webkit-scrollbar {
+    width: 8px; /* Width of the scrollbar */
+}
+
+.popup-content::-webkit-scrollbar-track {
+    background: transparent; /* Background of the scrollbar track */
+    border-radius: 25px; /* Match the border radius */
+}
+
+.popup-content::-webkit-scrollbar-thumb {
+    background: #004080; /* Color of the scrollbar thumb */
+    border-radius: 25px; /* Match the border radius */
+}
+
+.popup-content::-webkit-scrollbar-thumb:hover {
+    background: #003366; /* Darker color on hover */
+}
+
+/* Firefox scrollbar styling */
+.popup-content {
+    scrollbar-width: thin; /* Thin scrollbar */
+    scrollbar-color: #004080 transparent; /* Color of the scrollbar and track */
+}
+
+/* Optional: For older versions of Firefox */
+.popup-content {
+    -ms-overflow-style: -ms-autohiding-scrollbar; /* Hide scrollbar in IE and Edge */
+}
+
+/* History */
+
+#history-result p {
+    margin-bottom: 10px;
+}
+
+#history-result span {
+    font-weight: bold;
+    color: #004080;
+}
+
+/* Font face for Madani */
+@font-face {
+    font-family: 'Madani';
+    src: url('./Madani Arabic Regular 400.woff2') format('woff2'),
+         url('./Madani Arabic Regular 400.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Madani';
+    src: url('fonts/Madani-Bold.woff2') format('woff2'),
+         url('fonts/Madani-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+
+.news-container {
+    margin: 40px auto;
+    padding: 0 20px;
+    max-width: 1200px;
+}
+
+.news-container h1 {
+    text-align: center;
+    color: #004080;
+    font-size: 32px;
+    margin-bottom: 30px;
+}
+
+.news-articles {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.news-article {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+    overflow: hidden;
+    width: calc(33.333% - 20px);
+    padding: 15px;
+    box-sizing: border-box;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.news-article:hover {
+    transform: scale(1.02);
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.news-article img {
+    width: 100%;
+    height: auto;
+    border-bottom: 2px solid #004080;
+    font-family: 'Madani', sans-serif;
+}
+
+.news-article h2 {
+    font-size: 1.25em;
+    margin: 15px 0;
+    color: #004080;
+    font-family: 'Madani', sans-serif;
+}
+
+.news-article p {
+    font-size: 1em;
+    color: #666;
+    margin-bottom: 15px;
+    font-family: 'Madani', sans-serif;
+}
+
+.news-article a {
+    text-decoration: none;
+    color: #004080;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.news-article a:hover {
+    color: #002d5c;
+}
+
+#youtube-videos {
+    margin: 40px auto;
+    padding: 0 20px;
+    max-width: 1200px;
+}
+
+#youtube-videos h1 {
+    text-align: center;
+    color: #004080;
+    font-size: 32px;
+    margin-bottom: 30px;
+}
+
+#youtube-videos .video-cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.video-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+    overflow: hidden;
+    width: calc(33.333% - 20px);
+    padding: 15px;
+    box-sizing: border-box;
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+}
+
+.video-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+    background: #000;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.video-info {
+    padding: 0;
+}
+
+.video-info h2 {
+    font-size: 1em;
+    color: #004080;
+    margin-bottom: 5px;
+    font-family: 'Madani', sans-serif;
+}
+
+.video-info p {
+    font-size: 0.875em;
+    color: #666;
+    margin-bottom: 0;
+    font-family: 'Madani', sans-serif;
+}
+
+/* Ensure Arabic text uses Madani font */
+body[lang="ar"] {
+    font-family: 'Madani', sans-serif;
+}
+
+/* Container for Facebook posts */
+.facebook-posts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Space between posts */
+    margin: 0 auto;
+    justify-content: center; /* Align items to the start to ensure correct placement */
+}
+
+/* Individual Facebook post */
+.facebook-post {
+    position: relative;
+    width: fit-content;
+    min-width: 150px; /* Minimum width for posts */
+    height: 480px; /* Fixed height for all posts */
+    box-sizing: border-box;
+    border-radius: 10px; /* Apply border-radius to all corners */
+    overflow: hidden;
+    margin: 0; /* Remove any extra margins */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Apply border-radius to all corners */
+.facebook-post {
+    border-radius: 20px; /* Border radius on all corners */
+}
+
+/* Margin adjustments */
+.facebook-post:nth-child(5) {
+    margin-right: 5px; /* Margin on the right for the last item */
+}
+
+/* Adjust iframe within posts */
+.facebook-post iframe {
+    width: 100%;
+    height: 100%;
+}
+
+/* Hover effect for Facebook posts */
+.facebook-post:hover {
+    transform: scale(1.02); /* Slightly enlarge the post */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Add shadow on hover */
+}
+
+#h11 {
+    text-align: center;
+    color: #004080;
+    font-size: 32px;
+    margin-bottom: 30px;
+}
+
+#h111 {
+    text-align: center;
+    color: #004080;
+    font-size: 32px;
+    margin-bottom: 30px;
+    margin-top: 20px;
+}
+
+/* Container for Instagram posts */
+/* Container for Instagram posts */
+.insta-posts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Space between posts */
+    margin: 0 auto;
+    justify-content: center; /* Center items horizontally */
+    max-width: 1000px; /* Optional: Set a maximum width for the container */
+}
+
+
+/* Individual Instagram post */
+.insta-post {
+    position: relative;
+    width:fit-content;
+    min-width: 150px; /* Minimum width for posts */
+    height: 540px; /* Fixed height for all posts */
+    box-sizing: border-box;
+    border-radius: 20px; /* Apply border-radius to all corners */
+    overflow: hidden;
+    margin: 0; /* Remove any extra margins */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 20px;
+}
+
+/* Margin adjustments */
+.insta-post:nth-child(5) {
+    margin-right: 5px; /* Margin on the right for the last item */
+}
+
+/* Adjust iframe within posts */
+.insta-post iframe {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px; /* Apply border-radius to iframe */
+}
+
+/* Hover effect for Instagram posts */
+.insta-post:hover {
+    transform: scale(1.02); /* Slightly enlarge the post */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Add shadow on hover */
+}
+
+/* Scrollbar styling for Webkit browsers */
+::-webkit-scrollbar {
+    width: 12px; /* Width of the scrollbar */
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Track color */
+    border-radius: 10px; /* Rounded corners */
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888; /* Scrollbar thumb color */
+    border-radius: 10px; /* Rounded corners */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Scrollbar thumb color on hover */
+}
+
+/* Scrollbar styling for Firefox */
+html {
+    scrollbar-width: thin; /* Thin scrollbar */
+    scrollbar-color: #888 #f1f1f1; /* Thumb and track color */
+}
+
+/* Basic footer styling */
+footer {
+    background-color: #f1f1f1;
+    padding: 20px;
+    text-align: center;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-logo {
+    width: 75px; /* Adjust size if needed */
+    height: auto;
+}
+
+.footer-right {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icon {
+    color: #000; /* Set icon color */
+    font-size: 24px; /* Adjust icon size */
+    text-decoration: none;
+}
+
+.social-icon:hover {
+    color: #007bff; /* Change color on hover */
+}
+
+.footer-bottom {
+    margin-top: 20px;
+}
+
+.footer-bottom p {
+    margin: 0;
+    color: #333;
+}
+
+.footer-right i {
+    transition: color 0.3s, transform 0.3s;
+}
+
+.footer-right i:hover {
+    color: #cce6ff; /* Change to the color you prefer on hover */
+}
+
+
+/*staff*/
+
+#staffPanelBtn {
+    height: 75px;
+    width: 75px;
+    border: none;
+    background-color: #00000000;
+    position: absolute;
+}
+#staffPanelBtn:hover {
+    background-color: #ffffff00;
+}
